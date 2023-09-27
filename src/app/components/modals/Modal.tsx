@@ -5,16 +5,16 @@ import { IoMdClose } from "react-icons/io";
 import Button from "../Button";
 
 interface ModalProps {
-  isOpen: boolean;
+  isOpen?: boolean;
   onClose: () => void;
   onSubmit: () => void;
-  title: string;
-  body: React.ReactElement;
-  footer: React.ReactElement;
+  title?: string;
+  body?: React.ReactElement;
+  footer?: React.ReactElement;
   actionLabel: string;
   disabled: boolean;
-  secondaryAction: () => void;
-  secondaryLabel: string;
+  secondaryAction?: () => void;
+  secondaryLabel?: string;
 }
 
 export default function Modal({
@@ -61,7 +61,7 @@ export default function Modal({
 
   return !isOpen ? null : (
     <>
-      <div className="flex justify-center items-center overflow-x-hidden fixed overflow-y-auto inset-0 z-50 bg-neutral-800/70">
+      <div className="flex justify-center  py-3 overflow-x-hidden fixed overflow-y-auto inset-0 z-50 bg-neutral-800/70">
         <div className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto">
           {/* form content */}
           <div
@@ -72,14 +72,16 @@ export default function Modal({
           >
             <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white">
               {/* header */}
-              <div className="flex items-center p-6 rounded-t justify-center relative border-b-[1px]">
+              <div className="flex items-center px-5 py-3 rounded-t justify-center relative border-b-[1px]">
                 <button
-                  className=" p-1 border-0  hover:opacity-70 transition absolute left-9 "
+                  className=" p-1 border-0  hover:opacity-70 transition absolute right-9 "
                   onClick={handleClose}
                 >
                   <IoMdClose size={18} />
                 </button>
-                <div className="text-lg font-semibold">{title}</div>
+                <h1 className="text-2xl text-gray-800 font-semibold">
+                  {title}
+                </h1>
               </div>
 
               {/* body */}
