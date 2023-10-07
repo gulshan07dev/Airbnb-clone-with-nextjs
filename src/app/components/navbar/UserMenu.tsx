@@ -53,7 +53,7 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
                   onClick={() => {}}
                   label="Airbnb my home"
                 />
-                <MenuItem onClick={() => {signOut()}} label="Logout" />
+                <MenuItem onClick={() => {signOut()}} label="Logout" className="text-[#f31b1b] font-semibold" />
               </>
             ) : (
               <>
