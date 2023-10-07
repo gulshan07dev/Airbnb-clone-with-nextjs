@@ -47,7 +47,7 @@ const RentModal = () => {
       location: null,
       guestCount: 1,
       roomCount: 1,
-      bathroomCount: 1,
+      bathRoomCount: 1,
       imageSrc: "",
       price: 1,
       title: "",
@@ -59,7 +59,7 @@ const RentModal = () => {
   const location = watch("location");
   const guestCount = watch("guestCount");
   const roomCount = watch("roomCount");
-  const bathroomCount = watch("bathroomCount");
+  const bathRoomCount = watch("bathRoomCount");
   const imageSrc = watch("imageSrc");
 
   const Map = useMemo(
@@ -92,18 +92,21 @@ const RentModal = () => {
     }
 
     setIsLoading(true);
+    const loadingMessage = toast.loading("Creating...");
 
     axios
       .post("/api/listings", data)
       .then(() => {
-        toast.success("Listing created!");
+        toast.success("Listing created!", { id: loadingMessage });
         router.refresh();
         reset();
         setStep(STEPS.CATEGORY);
         rentModal.onClose();
       })
-      .catch(() => {
-        toast.error("Something went wrong.");
+      .catch((error) => {
+        toast.error(error?.response?.data?.error || "Something went wrong!", {
+          id: loadingMessage,
+        });
       })
       .finally(() => {
         setIsLoading(false);
@@ -195,7 +198,7 @@ const RentModal = () => {
         <hr />
         <Counter
           onChange={(value) => setCustomValue("bathroomCount", value)}
-          value={bathroomCount}
+          value={bathRoomCount}
           title="Bathrooms"
           subtitle="How many bathrooms do you have?"
         />
