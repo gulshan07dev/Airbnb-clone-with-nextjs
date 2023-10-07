@@ -90,7 +90,7 @@ export default function Modal({
               {/* footer */}
               <div className="flex flex-col gap-2 px-6">
                 <div className="flex flex-row items-center gap-4 w-full">
-                  {secondaryLabel && (
+                  {secondaryLabel && secondaryAction && (
                     <Button
                       disabled={disabled}
                       label={secondaryLabel}
