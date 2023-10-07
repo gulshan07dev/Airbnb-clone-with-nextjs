@@ -4,10 +4,12 @@ import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "../Avatar";
 import { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
+import { signOut } from "next-auth/react";
+import { SafeUser } from "@/app/types";
+
 import useRegisterModal from "@/app/hooks/useRegisterModel";
 import useLoginModal from "@/app/hooks/useLoginModel";
-import {signOut} from "next-auth/react"
-import { SafeUser } from "@/app/types";
+import useRentModal from "@/app/hooks/useRentModal";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
@@ -17,16 +19,27 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+  const rentModal = useRentModal();
 
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
+
+  const onRent = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+    console.log("hello");
+    
+    rentModal.onOpen();
+  }, [currentUser, loginModal, rentModal]);
+
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div
           className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full bg-neutral-100 transition cursor-pointer"
-          onClick={() => {}}
+          onClick={onRent}
         >
           Airbnb your home
         </div>
@@ -49,11 +62,14 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
                 <MenuItem onClick={() => {}} label="My favorite" />
                 <MenuItem onClick={() => {}} label="My reservation" />
                 <MenuItem onClick={() => {}} label="My properties" />
+                <MenuItem onClick={rentModal.onOpen} label="Airbnb my home" />
                 <MenuItem
-                  onClick={() => {}}
-                  label="Airbnb my home"
+                  onClick={() => {
+                    signOut();
+                  }}
+                  label="Logout"
+                  className="text-[#f31b1b] font-semibold"
                 />
-                <MenuItem onClick={() => {signOut()}} label="Logout" className="text-[#f31b1b] font-semibold" />
               </>
             ) : (
               <>
