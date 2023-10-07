@@ -16,8 +16,6 @@ export default function Counter({
   value,
   onChange,
 }: CounterProps) {
-
-  console.log("rerender");
   const onAdd = useCallback(() => {
     onChange(value + 1);
   }, [onChange, value]);
