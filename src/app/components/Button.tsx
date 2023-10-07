@@ -9,6 +9,7 @@ interface ButtonProps {
   outline?: boolean;
   small?: boolean;
   icon?: IconType;
+  className?: string
 }
 
 export default function Button({
@@ -18,12 +19,14 @@ export default function Button({
   outline,
   small,
   icon: Icon,
+  className=""
 }: ButtonProps) {
   return (
     <button
       disabled={disabled}
       onClick={onClick}
-      className={` relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full
+      className={`disabled:opacity-70  py-2.5 px-3 flex items-center justify-center gap-2 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full
+      ${className}
         ${outline ? "bg-white" : "bg-[#f71d1d]"}
         ${outline ? "border-black" : "border-rose-500"}
         ${outline ? "text-black" : "text-white"}
@@ -36,7 +39,7 @@ export default function Button({
       {Icon && (
         <Icon
           size={24}
-          className=" absolute left-4 top-3"/>
+          className=""/>
       )}
       {label}
     </button>

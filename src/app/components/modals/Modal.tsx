@@ -52,7 +52,7 @@ export default function Modal({
     if (disabled) {
       return;
     }
-    secondaryAction();
+    secondaryAction?.();
   }, [disabled, secondaryAction]);
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function Modal({
   return !isOpen ? null : (
     <>
       <div className="flex justify-center  py-3 overflow-x-hidden fixed overflow-y-auto inset-0 z-50 bg-neutral-800/70">
-        <div className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto">
+        <div className="relative w-[95%] md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-fit">
           {/* form content */}
           <div
             className={`translate duration-300 h-full  ${
@@ -70,7 +70,7 @@ export default function Modal({
             }
             ${showModal ? "opacity-100" : "opacity-0"}`}
           >
-            <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white">
+            <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col py-5 w-full bg-white mb-3">
               {/* header */}
               <div className="flex items-center px-5 py-3 rounded-t justify-center relative border-b-[1px]">
                 <button
@@ -79,7 +79,7 @@ export default function Modal({
                 >
                   <IoMdClose size={18} />
                 </button>
-                <h1 className="text-2xl text-gray-800 font-semibold">
+                <h1 className="text-3xl text-gray-800 font-semibold">
                   {title}
                 </h1>
               </div>
@@ -88,13 +88,13 @@ export default function Modal({
               <div className="relative p-6 flex-auto">{body}</div>
 
               {/* footer */}
-              <div className="flex flex-col gap-2 p-6">
+              <div className="flex flex-col gap-2 px-6">
                 <div className="flex flex-row items-center gap-4 w-full">
                   {secondaryLabel && (
                     <Button
                       disabled={disabled}
                       label={secondaryLabel}
-                      onClick={handleSecondaryAction}
+                      onClick={handleSecondaryOption}
                       outline
                     />
                   )}

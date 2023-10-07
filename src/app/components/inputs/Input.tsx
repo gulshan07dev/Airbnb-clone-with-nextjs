@@ -1,5 +1,3 @@
-"use client";
-
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { BiDollar } from "react-icons/bi";
 
@@ -17,17 +15,22 @@ interface InputProps {
 export default function Input({
   id,
   label,
-  type,
-  disabled,
-  formatPrice,
+  type = "text",
+  disabled = false,
+  formatPrice = false,
   register,
-  required,
+  required = false,
   errors,
 }: InputProps) {
+  const hasError = errors[id];
+
   return (
     <div className="w-full relative">
       {formatPrice && (
-        <BiDollar ize={24} className="text-neutral-700 absolute top-5 left-2" />
+        <BiDollar
+          size={24}
+          className="text-neutral-700 absolute top-5 left-2"
+        />
       )}
       <input
         id={id}
@@ -35,20 +38,18 @@ export default function Input({
         {...register(id, { required })}
         placeholder=" "
         type={type}
-        className={`peer w-full p-4 pt-6 font-light bg-white border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed
+        className={`peer w-full p-4 pt-6 text-base text-gray-700 font-medium bg-white border-2 rounded-md outline-none transition
           ${formatPrice ? "pl-9" : "pl-4"}
-          ${errors[id] ? "border-rose-500" : "border-neutral-300"}
-          ${errors[id] ? "focus:border-rose-500" : "focus:border-black"}
+          ${hasError ? "border-rose-500" : "border-neutral-300"}
+          ${hasError ? "focus:border-rose-500" : "focus:border-black"}
+          ${disabled ? "opacity-70 cursor-not-allowed" : ""}
         `}
       />
       <label
-        className={`absolute text-mdduration-150 transform transition -translate-y-4 top-5 z-10 origin-[0] 
+        className={`absolute text-m duration-150 transform transition -translate-y-4 top-5 z-10 origin-0 
           ${formatPrice ? "left-9" : "left-4"}
-          peer-placeholder-shown:scale-100 
-          peer-placeholder-shown:translate-y-0 
-          peer-focus:scale-75
-          peer-focus:-translate-y-4
-          ${errors[id] ? "text-rose-500" : "text-zinc-400"}
+          ${hasError ? "text-rose-500" : "text-zinc-700"}
+          ${hasError ? "scale-75 -translate-y-4" : ""}
         `}
       >
         {label}
