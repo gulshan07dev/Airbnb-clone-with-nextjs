@@ -29,8 +29,6 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
     if (!currentUser) {
       return loginModal.onOpen();
     }
-    console.log("hello");
-    
     rentModal.onOpen();
   }, [currentUser, loginModal, rentModal]);
 
