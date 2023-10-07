@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { BiDollar } from "react-icons/bi";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 interface InputProps {
   id: string;
@@ -23,9 +25,16 @@ export default function Input({
   errors,
 }: InputProps) {
   const hasError = errors[id];
+  const [isHidePassword, setIsHidePassword] = useState(true);
+
+  let passwordInputType = isHidePassword ? "password" : "text";
+
+  const toggleHidePassword = () => {
+    setIsHidePassword((prev) => !prev);
+  };
 
   return (
-    <div className="w-full relative">
+    <div className="w-full relative overflow-hidden">
       {formatPrice && (
         <BiDollar
           size={24}
@@ -37,7 +46,7 @@ export default function Input({
         disabled={disabled}
         {...register(id, { required })}
         placeholder=" "
-        type={type}
+        type={type === "password" ? passwordInputType : type}
         className={`peer w-full p-4 pt-6 text-base text-gray-700 font-medium bg-white border-2 rounded-md outline-none transition
           ${formatPrice ? "pl-9" : "pl-4"}
           ${hasError ? "border-rose-500" : "border-neutral-300"}
@@ -54,6 +63,17 @@ export default function Input({
       >
         {label}
       </label>
+      {type === "password" && (
+        <button
+          type="button"
+          onClick={toggleHidePassword}
+          className={`absolute md:px-5 px-3 right-2 bottom-2 top-2 h-[calc(100%-16px)] flex justify-center items-center bg-white text-lg ${
+            isHidePassword ? "text-gray-600" : "text-gray-950"
+          } `}
+        >
+          {isHidePassword ? <FaEye /> : <FaEyeSlash />}
+        </button>
+      )}
     </div>
   );
 }
