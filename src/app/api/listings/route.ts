@@ -24,12 +24,16 @@ export async function POST(req: Request) {
       price,
     } = body;
 
-    Object.keys(body).forEach((value: any) => {
-      if (!body[value]) {
-        return NextResponse.json({ error: "All Field are required" }, { status: 400 });
-      }
-    });
+   for (const key in body) {
+     if (!body[key]) {
+       return NextResponse.json(
+         { error: "All fields are required" },
+         { status: 400 }
+       );
+     }
+   }
 
+ 
     const listing = await prisma.listing.create({
       data: {
         title,
