@@ -76,11 +76,11 @@ export default function ListingClient({
       .then(() => {
         toast.success("Listing reserved!", { id: loadingMessage });
         setDateRange(initialDateRange);
-        //  router.push("/trips");
+        router.push("/trips");
       })
       .catch((error: any) => {
         console.log(error);
-        
+
         toast.error(error?.response?.data?.error || "something went wrong", {
           id: loadingMessage,
         });
