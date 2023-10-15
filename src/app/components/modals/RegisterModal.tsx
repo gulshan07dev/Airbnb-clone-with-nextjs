@@ -39,6 +39,7 @@ export default function RegisterModal() {
       .then((res) => {
         toast.success(res?.data?.message, { id: loadingId });
         registerModal.onClose();
+        loginModal.onOpen();
       })
       .catch((error: any) => {
         toast.error(
