@@ -1,16 +1,16 @@
 import Image from 'next/image'
 import Container from './components/Container'
 import EmptyState from './components/EmptyState';
-import getListings, { ListingsParams } from './actions/getListings';
+import getListings, { IListingsParams } from './actions/getListings';
 import getCurrentUser from './actions/getCurrentUser';
 import ListingCard from './components/listings/ListingCard';
 
 interface HomeProps {
-  searchParams: ListingsParams
+  searchParams: IListingsParams;
 };
 
 export default async function Home({searchParams}: HomeProps) {
-   const listings = await getListings();
+   const listings = await getListings(searchParams);
    const currentUser = await getCurrentUser();
 
    if (listings.length === 0) {
