@@ -34,9 +34,9 @@ const TripsClient: React.FC<TripsClientProps> = ({
           router.refresh();
         })
         .catch((error: any) => {
-           toast.error(error?.response?.data?.error || "something went wrong", {
-             id: loadingMessage,
-           });
+          toast.error(error?.response?.data?.error || "something went wrong", {
+            id: loadingMessage,
+          });
         })
         .finally(() => {
           setDeletingId("");
@@ -52,17 +52,8 @@ const TripsClient: React.FC<TripsClientProps> = ({
         subtitle="Where you've been and where you're going"
       />
       <div
-        className="
-          mt-10
-          grid 
-          grid-cols-1 
-          sm:grid-cols-2 
-          md:grid-cols-3 
-          lg:grid-cols-4
-          xl:grid-cols-5
-          2xl:grid-cols-6
-          gap-8
-        "
+        className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
+          xl:grid-cols-5 2xl:grid-cols-6 gap-8"
       >
         {reservations.map((reservation: any) => (
           <ListingCard
