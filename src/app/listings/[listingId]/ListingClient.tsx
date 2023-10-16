@@ -124,14 +124,7 @@ export default function ListingClient({
                 bathroomCount={listing.bathRoomCount}
                 locationValue={listing.locationValue}
               />
-              <div
-                className="
-                order-first 
-                mb-10 
-                md:order-last 
-                md:col-span-3
-              "
-              >
+              <div className="order-first mb-10 md:order-last md:col-span-3">
                 <ListingReservation
                   price={listing.price}
                   totalPrice={totalPrice}
