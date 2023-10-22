@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Airbnb Clone Project
 
-## Getting Started
+![Project Screenshot](https://res.cloudinary.com/dhwbyshmo/image/upload/v1697954690/project%20images/Airbnb_home_page.png)
 
-First, run the development server:
+A clone of Airbnb with an awesome user interface, authentication system, and various features to allow users to reserve and manage properties.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Table of Contents
+
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Authentication](#authentication)
+- [User Reservations](#user-reservations)
+- [Manage Properties](#manage-properties)
+- [License](#license)
+
+## Tech Stack
+
+This project uses the following technologies:
+
+- React
+- Nextjs
+- React hook form
+- React hot toast
+- React date range
+- React icons
+- React select
+- zustand
+- World countries
+- Prisma
+- axios
+- bcrypt
+- Date fns
+- Leaflet
+- next-auth
+- cloudinary
+
+
+You can find the complete list of dependencies in the `package.json` file.
+
+## Features
+
+- **Awesome UI**: The project features an attractive user interface inspired by Airbnb's design.
+
+- **Authentication**: Users can sign up, log in, and log out securely. The project uses Passport for user authentication.
+
+- **Property Reservations**: Users can reserve properties for their desired dates and manage their reservations.
+
+- **Manage Properties**: Property owners can add new properties for other users to reserve and remove properties.
+
+- **And Many More**: This project includes various other features, including searching for properties, filtering options, and more.
+
+## Installation
+
+1. Clone the repository:
+
+```
+git clone https://github.com/gulshan07dev/Airbnb-clone-with-nextjs.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigate to the project folder:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+cd airbnb-clone
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Install the required dependencies:
 
-## Learn More
+``` 
+npm install
+```
+ 
+4. Configure environment variables:
 
-To learn more about Next.js, take a look at the following resources:
+   - Create a `.env` file in the root directly based upon .`env.example.js` file.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Start the server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+npm run dev
+```
+  
+The project should now be running. Visit `http://localhost:5173` in your browser to access the application.
 
-## Deploy on Vercel
+## Authentication
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The project includes user authentication using next auth. Users can sign up for an account, log in, and log out securely. user also can login from google or github.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## User Reservations
+
+Users can reserve properties by selecting their desired dates and completing the reservation process. Reservations are stored in the database and can be managed by the user. 
+
+## Manage Properties
+
+Property owners can add new properties for other users to reserve and remove properties.
+
+
+## License
+
+This project is licensed under the [MIT License](LICENSE.md). Feel free to use and modify the code for your own purposes.
+
+
+
+_Made with ❤️ by [Gulshan Kumar](https://www.linkedin.com/in/gulshan-kumar-8293b9260/)_
