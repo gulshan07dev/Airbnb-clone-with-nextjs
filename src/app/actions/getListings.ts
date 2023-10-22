@@ -13,17 +13,17 @@ export interface IListingsParams {
 
 export default async function getListings(params: IListingsParams) {
   try {
-      const {
-        userId,
-        roomCount,
-        guestCount,
-        bathRoomCount,
-        locationValue,
-        startDate,
-        endDate,
-        category,
-      } = params;
-     
+    const {
+      userId,
+      roomCount,
+      guestCount,
+      bathRoomCount,
+      locationValue,
+      startDate,
+      endDate,
+      category,
+    } = params;
+
     let query: any = {};
 
     if (userId) {
@@ -75,19 +75,34 @@ export default async function getListings(params: IListingsParams) {
       };
     }
 
-    const listings = await prisma.listing.findMany({
-      where: query,
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
+    if (Object.keys(query).length !== 0) {
+      const listings = await prisma.listing.findMany({
+        where: query,
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
 
-    const safeListings = listings.map((listing) => ({
-      ...listing,
-      createdAt: listing.createdAt?.toISOString(),
-    }));
+      const safeListings = listings.map((listing) => ({
+        ...listing,
+        createdAt: listing.createdAt?.toISOString(),
+      }));
 
-    return safeListings;
+      return safeListings;
+    } else {
+      const listings = await prisma.listing.findMany({
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+
+      const safeListings = listings.map((listing) => ({
+        ...listing,
+        createdAt: listing.createdAt?.toISOString(),
+      }));
+
+      return safeListings;
+    }
   } catch (error: any) {
     throw new Error(error);
   }
