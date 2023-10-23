@@ -21,6 +21,7 @@ This project uses the following technologies:
 
 - React
 - Nextjs
+- next-auth
 - React hook form
 - React hot toast
 - React date range
@@ -33,7 +34,6 @@ This project uses the following technologies:
 - bcrypt
 - Date fns
 - Leaflet
-- next-auth
 - cloudinary
 
 
@@ -43,7 +43,7 @@ You can find the complete list of dependencies in the `package.json` file.
 
 - **Awesome UI**: The project features an attractive user interface inspired by Airbnb's design.
 
-- **Authentication**: Users can sign up, log in, and log out securely. The project uses Passport for user authentication.
+- **Authentication**: Users can sign up, log in, and log out securely. also including login with google or github.
 
 - **Property Reservations**: Users can reserve properties for their desired dates and manage their reservations.
 
