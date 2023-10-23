@@ -1,25 +1,23 @@
-import Container from './components/Container'
-import EmptyState from './components/EmptyState';
-import getListings, { IListingsParams } from './actions/getListings';
-import getCurrentUser from './actions/getCurrentUser';
-import ListingCard from './components/listings/ListingCard';
+import Container from "./components/Container";
+import EmptyState from "./components/EmptyState";
+import getListings, { IListingsParams } from "./actions/getListings";
+import getCurrentUser from "./actions/getCurrentUser";
+import ListingCard from "./components/listings/ListingCard";
 
 interface HomeProps {
   searchParams: IListingsParams;
-};
+}
 
-export default async function Home({searchParams}: HomeProps) {
-   const [listings, currentUser] = await Promise.all([
-     getListings(searchParams),
-     getCurrentUser(),
-   ]);
+const Home = async ({ searchParams }: HomeProps) => {
+  const [listings, currentUser] = await Promise.all([
+    getListings(searchParams),
+    getCurrentUser(),
+  ]);
 
-   if (listings.length === 0) {
-     return ( 
-         <EmptyState showReset /> 
-     );
-   }
-   
+  if (listings.length === 0) {
+    return <EmptyState showReset />;
+  }
+
   return (
     <section>
       <Container>
@@ -38,4 +36,6 @@ export default async function Home({searchParams}: HomeProps) {
       </Container>
     </section>
   );
-}
+};
+
+export default Home;

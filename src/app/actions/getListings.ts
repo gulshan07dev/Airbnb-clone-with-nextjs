@@ -14,14 +14,14 @@ export interface IListingsParams {
 export default async function getListings(params: IListingsParams) {
   try {
     const {
-      userId,
-      roomCount,
-      guestCount,
-      bathRoomCount,
-      locationValue,
-      startDate,
-      endDate,
-      category,
+      userId = null,
+      roomCount = null,
+      guestCount = null,
+      bathRoomCount = null,
+      locationValue = null,
+      startDate = null,
+      endDate = null,
+      category = null,
     } = params;
 
     let query: any = {};
@@ -75,34 +75,19 @@ export default async function getListings(params: IListingsParams) {
       };
     }
 
-    if (Object.keys(query).length !== 0) {
-      const listings = await prisma.listing.findMany({
-        where: query,
-        orderBy: {
-          createdAt: "desc",
-        },
-      });
+    const listings = await prisma.listing.findMany({
+      where: query,
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
 
-      const safeListings = listings.map((listing) => ({
-        ...listing,
-        createdAt: listing.createdAt?.toISOString(),
-      }));
+    const safeListings = listings.map((listing) => ({
+      ...listing,
+      createdAt: listing.createdAt?.toISOString(),
+    }));
 
-      return safeListings;
-    } else {
-      const listings = await prisma.listing.findMany({
-        orderBy: {
-          createdAt: "desc",
-        },
-      });
-
-      const safeListings = listings.map((listing) => ({
-        ...listing,
-        createdAt: listing.createdAt?.toISOString(),
-      }));
-
-      return safeListings;
-    }
+    return safeListings;
   } catch (error: any) {
     throw new Error(error);
   }
