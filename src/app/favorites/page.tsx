@@ -5,9 +5,11 @@ import getFavoriteListings from "@/app/actions/getFavoriteListings";
 
 import FavoritesClient from "./FavoritesClient";
 
-const ListingPage = async () => {
-  const listings = await getFavoriteListings();
-  const currentUser = await getCurrentUser();
+const ListingPage = async () => { 
+   const [listings, currentUser] = await Promise.all([
+     getFavoriteListings(),
+     getCurrentUser(),
+   ]);
 
   if (listings.length === 0) {
     return ( 
