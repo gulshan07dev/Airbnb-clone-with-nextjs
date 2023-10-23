@@ -1,27 +1,27 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Nunito } from 'next/font/google'
-import Navbar from './components/navbar/Navbar' 
-import RegisterModal from './components/modals/RegisterModal'
-import { Toaster } from 'react-hot-toast'
-import LoginModal from './components/modals/LoginModel'
-import getCurrentUser from './actions/getCurrentUser'
-import RentModal from './components/modals/RentModal'
-import SearchModal from './components/modals/SearchModal'
+import "./globals.css";
+import type { Metadata } from "next";
+import { Nunito } from "next/font/google";
+import Navbar from "./components/navbar/Navbar";
+import RegisterModal from "./components/modals/RegisterModal";
+import { Toaster } from "react-hot-toast";
+import LoginModal from "./components/modals/LoginModel";
+import getCurrentUser from "./actions/getCurrentUser";
+import RentModal from "./components/modals/RentModal";
+import SearchModal from "./components/modals/SearchModal";
 
 const font = Nunito({
-  subsets: ['latin']
-})
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  title: 'Airbnb',
-  description: 'Airbnb clone',
-}
+  title: "Airbnb",
+  description: "Airbnb clone",
+};
 
 export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   const currentUser = await getCurrentUser();
   return (
@@ -32,9 +32,7 @@ export default async function RootLayout({
         <RentModal />
         <SearchModal />
         <Navbar currentUser={currentUser} />
-        <main className='pb-20 pt-7'>
-          {children}
-        </main>
+        <main className="pb-20 pt-7">{children}</main>
         <Toaster />
       </body>
     </html>
